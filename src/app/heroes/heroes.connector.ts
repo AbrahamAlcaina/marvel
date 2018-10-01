@@ -8,8 +8,7 @@ import { Hero } from '../hero/hero';
 const getHeroesState = state => state.heroes;
 const heroId = (hero: Hero) => (hero.id);
 const combineStates = compose(
-  map(heroId),
-  propOr([], 'heroes')
+  propOr([], 'ids')
 );
 const getHeroesSelector = createSelector(getHeroesState, combineStates);
 
@@ -21,7 +20,7 @@ const getHeroesSelector = createSelector(getHeroesState, combineStates);
   `
 })
 export class HeroesConnectorComponent implements OnInit {
-  heroes$: Observable<string[]>;
+  heroes$: Observable<any>;
 
   constructor(private store: Store<State>) {}
   ngOnInit() {

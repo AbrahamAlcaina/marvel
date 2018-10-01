@@ -1,18 +1,17 @@
 import { compose, Store, createSelector } from '@ngrx/store';
-import { map, propOr, filter, head } from 'ramda';
+import { pathOr } from 'ramda';
 import { Input, Component, OnInit } from '@angular/core';
 import { State } from '../reducers/state';
 import { Observable } from 'rxjs';
-import { Hero } from './hero';
 import { showHeroDetail } from './actions';
 
 const getHeroesState = state => state.heroes;
-const heroWithImage = hero => ({ ...hero , image: `${hero.thumbnail.path}.${hero.thumbnail.extension}`});
+const heroWithImage = hero => (hero && hero.thumbnail) ?
+  ({ ...hero , image: `${hero.thumbnail.path}.${hero.thumbnail.extension}`}) : {};
+
 const combineStates = id => compose(
-  head,
-  map(heroWithImage),
-  filter((hero: Hero) => hero.id === id ),
-  propOr([], 'heroes')
+  heroWithImage,
+  pathOr({}, ['entities', id])
 );
 const getHeroSelector = id => createSelector(getHeroesState, combineStates(id));
 

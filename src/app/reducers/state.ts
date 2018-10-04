@@ -9,6 +9,8 @@ export interface State {
 export interface HeroesState extends EntityState<Hero> {
   loading: boolean;
   loaded: boolean;
+  related: string[];
 }
 
 export const heroAdapter: EntityAdapter<Hero> = createEntityAdapter<Hero>();
+

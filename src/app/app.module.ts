@@ -20,10 +20,12 @@ import { HeroesComponent } from './heroes/heroes.component';
 import { HeroComponent } from './hero/hero.component';
 import { HeroesEffects } from './heroes/effects';
 import { HeroesConnectorComponent } from './heroes/heroes.connector';
-import { MatCardModule, MatButtonModule } from '@angular/material';
+import { MatCardModule, MatButtonModule, MatDialogModule } from '@angular/material';
 import { HeroesResolver } from './heroes/heroes.resolver';
 import { HeroConnectorComponent } from './hero/hero.connector';
 import { HeroEffects } from './hero/effects';
+import { RelatedHerosComponent, RelatedHerosDialogComponent } from './hero/related.component';
+import { RelatedHerosConnectorComponent } from './hero/related.connector';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,10 @@ import { HeroEffects } from './hero/effects';
     HeroesConnectorComponent,
     HeroesComponent,
     HeroConnectorComponent,
-    HeroComponent
+    HeroComponent,
+    RelatedHerosDialogComponent,
+    RelatedHerosConnectorComponent,
+    RelatedHerosComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,7 +54,8 @@ import { HeroEffects } from './hero/effects';
     HttpClientModule,
     BrowserAnimationsModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDialogModule
   ],
   providers: [HeroesResolver],
   bootstrap: [AppComponent]
